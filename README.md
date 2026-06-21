@@ -100,6 +100,6 @@ git commit -m "message clair sur ce qu'on a fait"   # 3. décrire le changement
 git push               # 4. envoyer sur GitHub
 ```
  
-**Règle simple : pull avant, push après, jamais l'inverse.**
+**A toujours faire : pull avant tout de faire quoi que ce soit, push après avoir fini, jamais l'inverse.**
  
 Toujours commencer une session par un `git pull`, même si on pense être à jour — ça évite 90% des conflits.
