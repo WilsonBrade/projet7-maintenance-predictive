@@ -86,4 +86,20 @@ pip install -r requirements.txt
 3. On ne touche jamais à `data/raw/`
 4. On commit régulièrement avec un message claire pour que tout le monde voie l'avancement
 5. Mettre des commentaires après les modifications pour permettre aux autres de suite les endroits modifiés
-6. Faire un `git pull` avant de commencer à travailler pour récupérer les dernières modifications de groupes 
+6. Faire un `git pull` avant de commencer à travailler pour récupérer les dernières modifications de groupes
+
+## Le cycle Git à respecter
+ 
+On travaille tous sur `main`, pas besoin de branches pour ce projet (on est peu nombreux et les tâches sont assez séparées). Par contre il faut respecter ce cycle à chaque session de travail, pour éviter les conflits :
+ 
+```bash
+git pull              # 1. récupérer les derniers changements des autres
+# ... on travaille ...
+git add .              # 2. préparer ce qu'on a modifié
+git commit -m "message clair sur ce qu'on a fait"   # 3. décrire le changement
+git push               # 4. envoyer sur GitHub
+```
+ 
+**Règle simple : pull avant, push après, jamais l'inverse.**
+ 
+Toujours commencer une session par un `git pull`, même si on pense être à jour — ça évite 90% des conflits.
