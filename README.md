@@ -48,14 +48,14 @@ Les fichiers originaux, **tels que téléchargés** sur Kaggle (`train_FD001.txt
 Les données nettoyées ou transformées : par exemple `train_with_rul.csv` (le fichier train avec le RUL calculé pour chaque ligne).
 
 ### `notebooks/`
-C'est le **bac à sable**. Chacun peut expérimenter librement ici, tester des idées, faire des graphiques, essayer des trucs qui ne marchent pas. Pas besoin que ce soit propre.
+C'est le **bac à sable**. Chacun peut expérimenter librement ici, tester des idées, faire des graphiques, essayer des trucs qui ne marchent pas. 
 
 - `01_eda.ipynb` → exploration des capteurs, statistiques descriptives, visualisations
 - `02_feature_engineering.ipynb` → calcul du RUL, création de nouvelles variables (moyennes glissantes, détection de rupture...)
 - `03_modeling.ipynb` → entraînement et évaluation du modèle (Isolation Forest)
 
 ### `src/`
-Le code **propre et réutilisable**. Règle simple : dès qu'un bout de code marche dans un notebook et qu'on va s'en servir plusieurs fois (ou que quelqu'un d'autre dans l'équipe en a besoin), on le déplace ici sous forme de fonction.
+Le code **propre et réutilisable**. Dès qu'un bout de code marche dans un notebook et qu'on va s'en servir plusieurs fois (ou que quelqu'un d'autre dans l'équipe en a besoin), on le déplace ici sous forme de fonction, pour permettre aux de le réutiliser dans d'autres circonstances.
 
 - `data_loader.py` → charger les fichiers bruts, nommer les colonnes
 - `preprocessing.py` → nettoyage des données, calcul du RUL
@@ -84,4 +84,6 @@ pip install -r requirements.txt
 1. On expérimente dans `notebooks/`
 2. Quand un bout de code est stable et réutilisable, on le déplace dans `src/`
 3. On ne touche jamais à `data/raw/`
-4. On commit régulièrement pour que tout le monde voie l'avancement
+4. On commit régulièrement avec un message claire pour que tout le monde voie l'avancement
+5. Mettre des commentaires après les modifications pour permettre aux autres de suite les endroits modifiés
+6. Faire un `git pull` avant de commencer à travailler pour récupérer les dernières modifications de groupes 
