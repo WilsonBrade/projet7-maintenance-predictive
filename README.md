@@ -48,14 +48,14 @@ Les fichiers originaux, **tels que téléchargés** sur Kaggle (`train_FD001.txt
 Les données nettoyées ou transformées : par exemple `train_with_rul.csv` (le fichier train avec le RUL calculé pour chaque ligne).
 
 ### `notebooks/`
-C'est le **bac à sable**. Chacun peut expérimenter librement ici, tester des idées, faire des graphiques, essayer des trucs qui ne marchent pas. Pas besoin que ce soit propre.
+C'est le **bac à sable**. Chacun peut expérimenter librement ici, tester des idées, faire des graphiques, essayer des trucs qui ne marchent pas. 
 
 - `01_eda.ipynb` → exploration des capteurs, statistiques descriptives, visualisations
 - `02_feature_engineering.ipynb` → calcul du RUL, création de nouvelles variables (moyennes glissantes, détection de rupture...)
 - `03_modeling.ipynb` → entraînement et évaluation du modèle (Isolation Forest)
 
 ### `src/`
-Le code **propre et réutilisable**. Règle simple : dès qu'un bout de code marche dans un notebook et qu'on va s'en servir plusieurs fois (ou que quelqu'un d'autre dans l'équipe en a besoin), on le déplace ici sous forme de fonction.
+Le code **propre et réutilisable**. Dès qu'un bout de code marche dans un notebook et qu'on va s'en servir plusieurs fois (ou que quelqu'un d'autre dans l'équipe en a besoin), on le déplace ici sous forme de fonction, pour permettre aux de le réutiliser dans d'autres circonstances.
 
 - `data_loader.py` → charger les fichiers bruts, nommer les colonnes
 - `preprocessing.py` → nettoyage des données, calcul du RUL
@@ -84,4 +84,22 @@ pip install -r requirements.txt
 1. On expérimente dans `notebooks/`
 2. Quand un bout de code est stable et réutilisable, on le déplace dans `src/`
 3. On ne touche jamais à `data/raw/`
-4. On commit régulièrement pour que tout le monde voie l'avancement
+4. On commit régulièrement avec un message claire pour que tout le monde voie l'avancement
+5. Mettre des commentaires après les modifications pour permettre aux autres de suite les endroits modifiés
+6. Faire un `git pull` avant de commencer à travailler pour récupérer les dernières modifications de groupes
+
+## Le cycle Git à respecter
+ 
+On travaille tous sur `main`, pas besoin de branches pour ce projet (on est peu nombreux et les tâches sont assez séparées). Par contre il faut respecter ce cycle à chaque session de travail, pour éviter les conflits :
+ 
+```bash
+git pull              # 1. récupérer les derniers changements des autres
+# ... on travaille ...
+git add .              # 2. préparer ce qu'on a modifié
+git commit -m "message clair sur ce qu'on a fait"   # 3. décrire le changement
+git push               # 4. envoyer sur GitHub
+```
+ 
+**A toujours faire : pull avant tout de faire quoi que ce soit, push après avoir fini, jamais l'inverse.**
+ 
+Toujours commencer une session par un `git pull`, même si on pense être à jour — ça évite 90% des conflits.
