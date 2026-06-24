@@ -31,6 +31,10 @@ projet7-maintenance-predictive/
 ├── app/
 │   └── streamlit_app.py        
 │
+├── security/
+│   ├── data_integrity.py       
+│   └── notes_securite.md       
+│
 ├── docs/
 │   └── rapport.md              
 │
@@ -67,6 +71,12 @@ Le dashboard final, celui qu'on montrera au jury.
 
 - `streamlit_app.py` → interface qui affiche l'état des capteurs et les alertes en direct
 
+### `security/`
+Le volet cybersécurité du projet.
+
+- `data_integrity.py` → vérification que les données capteurs ne sont pas corrompues ou falsifiées
+- `notes_securite.md` → documentation des risques identifiés et des mesures prises
+
 ### `docs/`
 La documentation écrite du projet.
 
@@ -88,18 +98,44 @@ pip install -r requirements.txt
 5. Mettre des commentaires après les modifications pour permettre aux autres de suite les endroits modifiés
 6. Faire un `git pull` avant de commencer à travailler pour récupérer les dernières modifications de groupes
 
+## Organisation des branches
+
+Chaque pôle du projet a sa propre branche, pour que tout le monde puisse travailler en parallèle sans se marcher dessus :
+
+| Branche | Qui | Rôle |
+|---|---|---|
+| `main` | — | version stable, jamais modifiée directement |
+| `eda` | Souleymane + Aymane | EDA, statistiques descriptives, détection de rupture |
+| `modeling` | Mariza + Ndiaye | Feature engineering, Isolation Forest |
+| `security` | Khadhim + Kadidiatou | Intégrité des données capteurs |
+| `streamlit-app` | à définir | Dashboard final |
+
+**Règle d'or : on ne touche jamais directement à `main`.** Chacun travaille sur sa branche, et on intègre dans `main` via une pull request une fois qu'une partie est stable.
+
 ## Le cycle Git à respecter
- 
-On travaille tous sur `main`, pas besoin de branches pour ce projet (on est peu nombreux et les tâches sont assez séparées). Par contre il faut respecter ce cycle à chaque session de travail, pour éviter les conflits :
- 
+
+**La première fois**, récupérer le repo et basculer sur sa branche :
+
 ```bash
-git pull              # 1. récupérer les derniers changements des autres
-# ... on travaille ...
-git add .              # 2. préparer ce qu'on a modifié
-git commit -m "message clair sur ce qu'on a fait"   # 3. décrire le changement
-git push               # 4. envoyer sur GitHub
+git clone https://github.com/WilsonBrade/projet7-maintenance-predictive.git
+cd projet7-maintenance-predictive
+git checkout eda              # remplacer "eda" par sa branche
 ```
- 
-**A toujours faire : pull avant tout de faire quoi que ce soit, push après avoir fini, jamais l'inverse.**
- 
+
+**À chaque session de travail ensuite** :
+
+```bash
+git pull               # 1. récupérer les derniers changements de SA branche
+# ... on travaille ...
+git add .               # 2. préparer ce qu'on a modifié
+git commit -m "message clair sur ce qu'on a fait"   # 3. décrire le changement
+git push                # 4. envoyer sur GitHub
+```
+
+**A toujours faire : pull avant de faire quoi que ce soit, push après avoir fini, jamais l'inverse.**
+
 Toujours commencer une session par un `git pull`, même si on pense être à jour — ça évite 90% des conflits.
+
+## Intégrer une branche dans `main`
+
+Une fois qu'une partie est stable et testée, on ouvre une **pull request** sur GitHub (depuis sa branche vers `main`) pour la faire relire avant de fusionner. On ne merge jamais directement sans relecture, même rapide.
